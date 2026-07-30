@@ -97,25 +97,37 @@ piano.volume = .25;
 
 let started = false;
 
-function startExperience(){
+async function startExperience(){
 
     if(started) return;
 
     started = true;
 
-    music.play().catch(()=>{});
+    try{
 
-    gsap.to(music,{
+        music.volume = 0;
 
-        volume:.07,
+        await music.play();
 
-        duration:5,
+        gsap.to(music,{
+            volume:0.15,
+            duration:2,
+            ease:"power2.out"
+        });
 
-        ease:"power2.out"
+    }catch(err){
 
-    });
+        console.log("Não foi possível iniciar o áudio:", err);
+
+        started = false;
+
+    }
 
 }
+
+document.addEventListener("pointerdown", startExperience, { once:true });
+
+document.addEventListener("click", startExperience, { once:true });
 
 window.addEventListener("touchstart",startExperience,{once:true});
 
