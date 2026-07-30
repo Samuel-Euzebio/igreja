@@ -16,37 +16,37 @@
 
 *,
 *::before,
-*::after{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
+html {
 
-    scroll-behavior:smooth;
+    scroll-behavior: smooth;
 
-    overflow-x:hidden;
+    overflow-x: hidden;
 
-    font-size:16px;
+    font-size: 16px;
 
 }
 
-body{
+body {
 
-    overflow-x:hidden;
+    overflow-x: hidden;
 
-    background:#070707;
+    background: #070707;
 
-    color:#fff;
+    color: #fff;
 
-    font-family:"Inter",sans-serif;
+    font-family: "Inter", sans-serif;
 
-    -webkit-font-smoothing:antialiased;
+    -webkit-font-smoothing: antialiased;
 
-    text-rendering:optimizeLegibility;
+    text-rendering: optimizeLegibility;
 
-    cursor:default;
+    cursor: default;
 
 }
 
@@ -54,27 +54,27 @@ body{
    VARIÁVEIS
 ========================== */
 
-:root{
+:root {
 
-    --bg:#070707;
+    --bg: #070707;
 
-    --bg2:#0f0f0f;
+    --bg2: #0f0f0f;
 
-    --white:#FAFAFA;
+    --white: #FAFAFA;
 
-    --gray:#BDBDBD;
+    --gray: #BDBDBD;
 
-    --gray2:#7C7C7C;
+    --gray2: #7C7C7C;
 
-    --gold:#D8B15A;
+    --gold: #D8B15A;
 
-    --goldLight:#F0CF86;
+    --goldLight: #F0CF86;
 
-    --border:rgba(255,255,255,.08);
+    --border: rgba(255, 255, 255, .08);
 
-    --glass:rgba(255,255,255,.03);
+    --glass: rgba(255, 255, 255, .03);
 
-    --transition:.7s cubic-bezier(.19,1,.22,1);
+    --transition: .7s cubic-bezier(.19, 1, .22, 1);
 
 }
 
@@ -82,11 +82,11 @@ body{
    SELEÇÃO
 ========================== */
 
-::selection{
+::selection {
 
-    background:var(--gold);
+    background: var(--gold);
 
-    color:#111;
+    color: #111;
 
 }
 
@@ -94,29 +94,29 @@ body{
    SCROLLBAR
 ========================== */
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
 
-    width:7px;
-
-}
-
-::-webkit-scrollbar-track{
-
-    background:#070707;
+    width: 7px;
 
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-track {
 
-    background:rgba(216,177,90,.35);
-
-    border-radius:50px;
+    background: #070707;
 
 }
 
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb {
 
-    background:var(--gold);
+    background: rgba(216, 177, 90, .35);
+
+    border-radius: 50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+    background: var(--gold);
 
 }
 
@@ -124,11 +124,11 @@ body{
    BODY
 ========================== */
 
-body{
+body {
 
-    position:relative;
+    position: relative;
 
-    min-height:100vh;
+    min-height: 100vh;
 
 }
 
@@ -136,25 +136,127 @@ body{
     BACKGROUND
 ======================================================= */
 
-.backgroundGlow{
+.backgroundGlow {
 
-    position:fixed;
+    position: fixed;
 
-    inset:0;
+    inset: 0;
 
-    pointer-events:none;
+    pointer-events: none;
 
-    z-index:-3;
+    z-index: -3;
 
     background:
 
-        radial-gradient(
-            circle at center,
-            rgba(216,177,90,.10),
-            transparent 55%
-        );
+        radial-gradient(circle at center,
+            rgba(216, 177, 90, .10),
+            transparent 55%);
 
-    transition:1s;
+    transition: 1s;
+
+}
+
+/* =======================================================
+    AUDIO OVERLAY
+======================================================= */
+
+#audioOverlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: #090909;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 999999;
+
+    transition: .8s;
+
+}
+
+#audioOverlay.hidden {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+.audioContent {
+
+    text-align: center;
+
+    max-width: 300px;
+
+}
+
+.playIcon {
+
+    width: 90px;
+
+    height: 90px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(216, 177, 90, .4);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 2rem;
+
+    color: #D8B15A;
+
+    margin: auto;
+
+    margin-bottom: 30px;
+
+    animation: pulse 2s infinite;
+
+}
+
+.audioContent h2 {
+
+    margin-bottom: 15px;
+
+}
+
+.audioContent p {
+
+    color: #888;
+
+    line-height: 1.8;
+
+}
+
+@keyframes pulse {
+
+    0% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.08);
+
+    }
+
+    100% {
+
+        transform: scale(1);
+
+    }
 
 }
 
@@ -162,22 +264,22 @@ body{
     NOISE
 ======================================================= */
 
-.noise{
+.noise {
 
-    position:fixed;
+    position: fixed;
 
-    inset:0;
+    inset: 0;
 
-    z-index:-2;
+    z-index: -2;
 
-    opacity:.035;
+    opacity: .035;
 
-    pointer-events:none;
+    pointer-events: none;
 
     background-image:
-    url("https://grainy-gradients.vercel.app/noise.svg");
+        url("https://grainy-gradients.vercel.app/noise.svg");
 
-    background-size:250px;
+    background-size: 250px;
 
 }
 
@@ -185,19 +287,19 @@ body{
     CANVAS
 ======================================================= */
 
-#particles{
+#particles {
 
-    position:fixed;
+    position: fixed;
 
-    inset:0;
+    inset: 0;
 
-    width:100%;
+    width: 100%;
 
-    height:100%;
+    height: 100%;
 
-    z-index:-1;
+    z-index: -1;
 
-    pointer-events:none;
+    pointer-events: none;
 
 }
 
@@ -205,25 +307,25 @@ body{
     PANELS
 ======================================================= */
 
-.panel{
+.panel {
 
-    position:relative;
+    position: relative;
 
-    width:100%;
+    width: 100%;
 
-    min-height:100svh;
+    min-height: 100svh;
 
-    display:flex;
+    display: flex;
 
-    justify-content:center;
+    justify-content: center;
 
-    align-items:center;
+    align-items: center;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    padding:40px 28px;
+    padding: 40px 28px;
 
-    text-align:center;
+    text-align: center;
 
 }
 
@@ -231,17 +333,13 @@ body{
     DARK PANEL
 ======================================================= */
 
-.dark{
+.dark {
 
-    background:linear-gradient(
+    background: linear-gradient(to bottom,
 
-        to bottom,
+            rgba(0, 0, 0, .15),
 
-        rgba(0,0,0,.15),
-
-        rgba(0,0,0,.45)
-
-    );
+            rgba(0, 0, 0, .45));
 
 }
 
@@ -249,13 +347,13 @@ body{
     CONTAINER
 ======================================================= */
 
-.heroContent{
+.heroContent {
 
-    width:100%;
+    width: 100%;
 
-    max-width:850px;
+    max-width: 850px;
 
-    margin:auto;
+    margin: auto;
 
 }
 
@@ -265,33 +363,33 @@ body{
 
 h1,
 h2,
-blockquote{
+blockquote {
 
-    font-weight:300;
+    font-weight: 300;
 
-    letter-spacing:-2px;
+    letter-spacing: -2px;
 
-    line-height:1.05;
+    line-height: 1.05;
 
-    color:var(--white);
-
-}
-
-h1{
-
-    font-size:clamp(3rem,8vw,6rem);
+    color: var(--white);
 
 }
 
-h2{
+h1 {
 
-    font-size:clamp(2.7rem,8vw,5rem);
+    font-size: clamp(3rem, 8vw, 6rem);
 
 }
 
-.big{
+h2 {
 
-    max-width:900px;
+    font-size: clamp(2.7rem, 8vw, 5rem);
+
+}
+
+.big {
+
+    max-width: 900px;
 
 }
 
@@ -299,23 +397,23 @@ h2{
     PARAGRAPHS
 ======================================================= */
 
-p{
+p {
 
-    color:var(--gray);
+    color: var(--gray);
 
-    line-height:1.8;
+    line-height: 1.8;
 
-    font-size:1rem;
+    font-size: 1rem;
 
 }
 
-.description{
+.description {
 
-    margin-top:35px;
+    margin-top: 35px;
 
-    max-width:700px;
+    max-width: 700px;
 
-    font-size:1.05rem;
+    font-size: 1.05rem;
 
 }
 
@@ -323,9 +421,9 @@ p{
     GOLD
 ======================================================= */
 
-.gold{
+.gold {
 
-    color:var(--gold);
+    color: var(--gold);
 
 }
 
@@ -333,11 +431,11 @@ p{
     FADE INITIAL
 ======================================================= */
 
-.reveal{
+.reveal {
 
-    opacity:0;
+    opacity: 0;
 
-    transform:translateY(70px);
+    transform: translateY(70px);
 
 }
 
@@ -345,33 +443,29 @@ p{
     LIGHT
 ======================================================= */
 
-.light{
+.light {
 
-    position:absolute;
+    position: absolute;
 
-    width:450px;
+    width: 450px;
 
-    height:450px;
+    height: 450px;
 
-    border-radius:50%;
+    border-radius: 50%;
 
     background:
 
-        radial-gradient(
+        radial-gradient(circle,
 
-            circle,
+            rgba(216, 177, 90, .18),
 
-            rgba(216,177,90,.18),
+            transparent 70%);
 
-            transparent 70%
+    filter: blur(55px);
 
-        );
+    opacity: 0;
 
-    filter:blur(55px);
-
-    opacity:0;
-
-    z-index:-1;
+    z-index: -1;
 
 }
 
@@ -379,11 +473,11 @@ p{
     LINKS
 ======================================================= */
 
-a{
+a {
 
-    color:inherit;
+    color: inherit;
 
-    text-decoration:none;
+    text-decoration: none;
 
 }
 
@@ -391,15 +485,15 @@ a{
     BUTTON RESET
 ======================================================= */
 
-button{
+button {
 
-    font-family:inherit;
+    font-family: inherit;
 
-    outline:none;
+    outline: none;
 
-    border:none;
+    border: none;
 
-    background:none;
+    background: none;
 
 }
 
@@ -411,9 +505,9 @@ button{
     HERO
 =========================*/
 
-.hero{
+.hero {
 
-    overflow:hidden;
+    overflow: hidden;
 
 }
 
@@ -421,58 +515,56 @@ button{
     8:36
 =========================*/
 
-.reference{
+.reference {
 
-    display:inline-block;
+    display: inline-block;
 
-    margin-bottom:70px;
+    margin-bottom: 70px;
 
-    color:var(--gold);
+    color: var(--gold);
 
-    font-size:1.15rem;
+    font-size: 1.15rem;
 
-    font-weight:500;
+    font-weight: 500;
 
-    letter-spacing:.85rem;
+    letter-spacing: .85rem;
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 
-    position:relative;
+    position: relative;
 
-    opacity:.9;
+    opacity: .9;
 
-    transition:var(--transition);
+    transition: var(--transition);
 
 }
 
-.reference::before{
+.reference::before {
 
-    content:"";
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    left:50%;
+    left: 50%;
 
-    bottom:-22px;
+    bottom: -22px;
 
-    transform:translateX(-50%);
+    transform: translateX(-50%);
 
-    width:80px;
+    width: 80px;
 
-    height:2px;
+    height: 2px;
 
-    border-radius:20px;
+    border-radius: 20px;
 
-    background:linear-gradient(
-        90deg,
-        transparent,
-        var(--gold),
-        transparent
-    );
+    background: linear-gradient(90deg,
+            transparent,
+            var(--gold),
+            transparent);
 
     box-shadow:
-        0 0 10px rgba(216,177,90,.4),
-        0 0 30px rgba(216,177,90,.2);
+        0 0 10px rgba(216, 177, 90, .4),
+        0 0 30px rgba(216, 177, 90, .2);
 
 }
 
@@ -480,65 +572,61 @@ button{
     TITLE
 =========================*/
 
-.title{
+.title {
 
-    position:relative;
+    position: relative;
 
-    max-width:900px;
+    max-width: 900px;
 
-    margin:auto;
+    margin: auto;
 
-    font-weight:300;
+    font-weight: 300;
 
-    line-height:1.02;
+    line-height: 1.02;
 
-    text-wrap:balance;
+    text-wrap: balance;
 
 }
 
-.title span{
+.title span {
 
-    position:relative;
+    position: relative;
 
-    color:var(--gold);
+    color: var(--gold);
 
-    font-weight:500;
+    font-weight: 500;
 
 }
 
 /* brilho passando na palavra */
 
-.title span::after{
+.title span::after {
 
-    content:"";
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    top:-5%;
+    top: -5%;
 
-    left:-30%;
+    left: -30%;
 
-    width:35%;
+    width: 35%;
 
-    height:110%;
+    height: 110%;
 
-    background:linear-gradient(
+    background: linear-gradient(90deg,
 
-        90deg,
+            transparent,
 
-        transparent,
+            rgba(255, 255, 255, .85),
 
-        rgba(255,255,255,.85),
+            transparent);
 
-        transparent
+    transform: skewX(-20deg);
 
-    );
+    animation: shine 6s infinite;
 
-    transform:skewX(-20deg);
-
-    animation:shine 6s infinite;
-
-    filter:blur(2px);
+    filter: blur(2px);
 
 }
 
@@ -546,17 +634,17 @@ button{
     HINT
 =========================*/
 
-.hint{
+.hint {
 
-    margin-top:30px;
+    margin-top: 30px;
 
-    font-size:.8rem;
+    font-size: .8rem;
 
-    letter-spacing:.35rem;
+    letter-spacing: .35rem;
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 
-    color:var(--gray2);
+    color: var(--gray2);
 
 }
 
@@ -564,41 +652,41 @@ button{
     INDICADOR
 =========================*/
 
-.indicator{
+.indicator {
 
-    margin:90px auto 0;
+    margin: 90px auto 0;
 
-    width:28px;
+    width: 28px;
 
-    height:54px;
+    height: 54px;
 
-    border-radius:30px;
+    border-radius: 30px;
 
-    border:1px solid rgba(255,255,255,.15);
+    border: 1px solid rgba(255, 255, 255, .15);
 
-    display:flex;
+    display: flex;
 
-    justify-content:center;
+    justify-content: center;
 
-    padding-top:10px;
+    padding-top: 10px;
 
-    position:relative;
+    position: relative;
 
-    backdrop-filter:blur(10px);
+    backdrop-filter: blur(10px);
 
 }
 
-.indicator span{
+.indicator span {
 
-    width:5px;
+    width: 5px;
 
-    height:11px;
+    height: 11px;
 
-    border-radius:20px;
+    border-radius: 20px;
 
-    background:var(--gold);
+    background: var(--gold);
 
-    animation:scrollIndicator 2s infinite;
+    animation: scrollIndicator 2s infinite;
 
 }
 
@@ -606,41 +694,37 @@ button{
     HERO GLOW
 =========================*/
 
-.hero::before{
+.hero::before {
 
-    content:"";
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    width:700px;
+    width: 700px;
 
-    height:700px;
+    height: 700px;
 
-    left:50%;
+    left: 50%;
 
-    top:45%;
+    top: 45%;
 
-    transform:translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 
-    border-radius:50%;
+    border-radius: 50%;
 
     background:
 
-        radial-gradient(
+        radial-gradient(circle,
 
-            circle,
+            rgba(216, 177, 90, .10),
 
-            rgba(216,177,90,.10),
+            transparent 65%);
 
-            transparent 65%
+    filter: blur(80px);
 
-        );
+    animation: pulseGlow 6s ease-in-out infinite;
 
-    filter:blur(80px);
-
-    animation:pulseGlow 6s ease-in-out infinite;
-
-    z-index:-1;
+    z-index: -1;
 
 }
 
@@ -648,27 +732,23 @@ button{
     HERO VIGNETTE
 =========================*/
 
-.hero::after{
+.hero::after {
 
-    content:"";
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    inset:0;
+    inset: 0;
 
     background:
 
-        radial-gradient(
-
-            circle,
+        radial-gradient(circle,
 
             transparent 45%,
 
-            rgba(0,0,0,.35)
+            rgba(0, 0, 0, .35));
 
-        );
-
-    pointer-events:none;
+    pointer-events: none;
 
 }
 
@@ -676,9 +756,9 @@ button{
     HERO TRANSITION
 =========================*/
 
-.heroContent>*{
+.heroContent>* {
 
-    will-change:transform,opacity;
+    will-change: transform, opacity;
 
 }
 
@@ -686,9 +766,9 @@ button{
     IDLE ANIMATION
 =========================*/
 
-.title{
+.title {
 
-    animation:breath 7s ease-in-out infinite;
+    animation: breath 7s ease-in-out infinite;
 
 }
 
@@ -696,93 +776,93 @@ button{
     KEYFRAMES
 =========================*/
 
-@keyframes breath{
+@keyframes breath {
 
-    0%{
+    0% {
 
-        transform:scale(1);
-
-    }
-
-    50%{
-
-        transform:scale(1.015);
+        transform: scale(1);
 
     }
 
-    100%{
+    50% {
 
-        transform:scale(1);
-
-    }
-
-}
-
-@keyframes pulseGlow{
-
-    0%{
-
-        opacity:.25;
-
-        transform:translate(-50%,-50%) scale(1);
+        transform: scale(1.015);
 
     }
 
-    50%{
+    100% {
 
-        opacity:.5;
-
-        transform:translate(-50%,-50%) scale(1.08);
-
-    }
-
-    100%{
-
-        opacity:.25;
-
-        transform:translate(-50%,-50%) scale(1);
+        transform: scale(1);
 
     }
 
 }
 
-@keyframes scrollIndicator{
+@keyframes pulseGlow {
 
-    0%{
+    0% {
 
-        opacity:0;
+        opacity: .25;
 
-        transform:translateY(0);
-
-    }
-
-    30%{
-
-        opacity:1;
+        transform: translate(-50%, -50%) scale(1);
 
     }
 
-    100%{
+    50% {
 
-        opacity:0;
+        opacity: .5;
 
-        transform:translateY(20px);
+        transform: translate(-50%, -50%) scale(1.08);
+
+    }
+
+    100% {
+
+        opacity: .25;
+
+        transform: translate(-50%, -50%) scale(1);
 
     }
 
 }
 
-@keyframes shine{
+@keyframes scrollIndicator {
 
-    0%{
+    0% {
 
-        left:-35%;
+        opacity: 0;
+
+        transform: translateY(0);
 
     }
 
-    100%{
+    30% {
 
-        left:130%;
+        opacity: 1;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+}
+
+@keyframes shine {
+
+    0% {
+
+        left: -35%;
+
+    }
+
+    100% {
+
+        left: 130%;
 
     }
 
@@ -796,39 +876,39 @@ button{
     SEÇÕES
 =========================*/
 
-.panel{
+.panel {
 
-    position:relative;
+    position: relative;
 
-    isolation:isolate;
+    isolation: isolate;
 
-    overflow:hidden;
+    overflow: hidden;
 
 }
 
-.panel::before{
+.panel::before {
 
-    content:"";
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    inset:0;
+    inset: 0;
 
     background:
 
-    radial-gradient(circle at center,
-    rgba(255,255,255,.015),
-    transparent 70%);
+        radial-gradient(circle at center,
+            rgba(255, 255, 255, .015),
+            transparent 70%);
 
-    opacity:0;
+    opacity: 0;
 
-    transition:1s;
+    transition: 1s;
 
 }
 
-.panel.active::before{
+.panel.active::before {
 
-    opacity:1;
+    opacity: 1;
 
 }
 
@@ -836,27 +916,27 @@ button{
     TÍTULOS
 =========================*/
 
-.big{
+.big {
 
-    max-width:900px;
+    max-width: 900px;
 
-    margin:auto;
+    margin: auto;
 
-    line-height:1.08;
+    line-height: 1.08;
 
-    font-weight:300;
+    font-weight: 300;
 
-    text-wrap:balance;
+    text-wrap: balance;
 
-    transition:.8s;
+    transition: .8s;
 
 }
 
-.big strong{
+.big strong {
 
-    color:var(--gold);
+    color: var(--gold);
 
-    font-weight:500;
+    font-weight: 500;
 
 }
 
@@ -864,29 +944,27 @@ button{
     FRASE "MAS..."
 =========================*/
 
-.dark{
+.dark {
 
     background:
 
-    radial-gradient(circle at center,
-    rgba(216,177,90,.03),
-    transparent 70%),
+        radial-gradient(circle at center,
+            rgba(216, 177, 90, .03),
+            transparent 70%),
 
-    linear-gradient(
-        to bottom,
-        #080808,
-        #050505
-    );
+        linear-gradient(to bottom,
+            #080808,
+            #050505);
 
 }
 
-.dark .big{
+.dark .big {
 
-    font-size:clamp(3rem,9vw,6rem);
+    font-size: clamp(3rem, 9vw, 6rem);
 
-    color:var(--gold);
+    color: var(--gold);
 
-    letter-spacing:-3px;
+    letter-spacing: -3px;
 
 }
 
@@ -894,85 +972,85 @@ button{
     VERSÍCULO
 =========================*/
 
-.verse{
+.verse {
 
-    position:relative;
+    position: relative;
 
-    overflow:hidden;
+    overflow: hidden;
 
 }
 
-.verse::before{
+.verse::before {
 
-    content:"";
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    width:900px;
+    width: 900px;
 
-    height:900px;
+    height: 900px;
 
-    left:50%;
+    left: 50%;
 
-    top:50%;
+    top: 50%;
 
-    transform:translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 
-    border-radius:50%;
+    border-radius: 50%;
 
     background:
 
-    radial-gradient(circle,
+        radial-gradient(circle,
 
-    rgba(216,177,90,.18),
+            rgba(216, 177, 90, .18),
 
-    transparent 65%);
+            transparent 65%);
 
-    filter:blur(120px);
+    filter: blur(120px);
 
-    opacity:.2;
+    opacity: .2;
 
-    animation:verseGlow 8s ease infinite;
-
-}
-
-blockquote{
-
-    max-width:850px;
-
-    font-size:clamp(2.2rem,8vw,5rem);
-
-    line-height:1.15;
-
-    font-weight:300;
-
-    z-index:2;
-
-    position:relative;
-
-    text-wrap:balance;
+    animation: verseGlow 8s ease infinite;
 
 }
 
-blockquote .word{
+blockquote {
 
-    display:inline-block;
+    max-width: 850px;
+
+    font-size: clamp(2.2rem, 8vw, 5rem);
+
+    line-height: 1.15;
+
+    font-weight: 300;
+
+    z-index: 2;
+
+    position: relative;
+
+    text-wrap: balance;
 
 }
 
-small{
+blockquote .word {
 
-    margin-top:45px;
+    display: inline-block;
 
-    color:var(--gold);
+}
 
-    letter-spacing:.35rem;
+small {
 
-    text-transform:uppercase;
+    margin-top: 45px;
 
-    font-size:.9rem;
+    color: var(--gold);
 
-    opacity:.9;
+    letter-spacing: .35rem;
+
+    text-transform: uppercase;
+
+    font-size: .9rem;
+
+    opacity: .9;
 
 }
 
@@ -980,17 +1058,17 @@ small{
     DESCRIÇÃO
 =========================*/
 
-.description{
+.description {
 
-    margin-top:45px;
+    margin-top: 45px;
 
-    max-width:700px;
+    max-width: 700px;
 
-    color:var(--gray);
+    color: var(--gray);
 
-    font-size:1.05rem;
+    font-size: 1.05rem;
 
-    line-height:2;
+    line-height: 2;
 
 }
 
@@ -998,53 +1076,53 @@ small{
     CONVITE
 =========================*/
 
-.invite{
+.invite {
 
-    position:relative;
-
-}
-
-.invite h2{
-
-    font-size:clamp(2.7rem,8vw,5rem);
-
-    margin-bottom:70px;
+    position: relative;
 
 }
 
-.event{
+.invite h2 {
 
-    display:flex;
+    font-size: clamp(2.7rem, 8vw, 5rem);
 
-    flex-direction:column;
-
-    gap:22px;
-
-    margin-bottom:60px;
+    margin-bottom: 70px;
 
 }
 
-.event p{
+.event {
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    flex-direction: column;
 
-    justify-content:center;
+    gap: 22px;
 
-    gap:14px;
-
-    color:var(--gray);
-
-    font-size:1rem;
+    margin-bottom: 60px;
 
 }
 
-.event i{
+.event p {
 
-    color:var(--gold);
+    display: flex;
 
-    width:22px;
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    color: var(--gray);
+
+    font-size: 1rem;
+
+}
+
+.event i {
+
+    color: var(--gold);
+
+    width: 22px;
 
 }
 
@@ -1052,78 +1130,75 @@ small{
     BOTÃO
 =========================*/
 
-button{
+button {
 
-    position:relative;
+    position: relative;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    padding:20px 42px;
+    padding: 20px 42px;
 
-    border-radius:999px;
+    border-radius: 999px;
 
-    color:white;
+    color: white;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    font-size:1rem;
+    font-size: 1rem;
 
-    font-weight:500;
+    font-weight: 500;
 
-    letter-spacing:.05rem;
+    letter-spacing: .05rem;
 
-    border:1px solid rgba(216,177,90,.25);
+    border: 1px solid rgba(216, 177, 90, .25);
 
-    backdrop-filter:blur(18px);
+    backdrop-filter: blur(18px);
 
-    background:rgba(255,255,255,.02);
+    background: rgba(255, 255, 255, .02);
 
-    transition:.45s cubic-bezier(.19,1,.22,1);
+    transition: .45s cubic-bezier(.19, 1, .22, 1);
 
 }
 
-button::before{
+button::before {
 
-    content:"";
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    inset:0;
+    inset: 0;
 
     background:
 
-    linear-gradient(
-        120deg,
+        linear-gradient(120deg,
 
-        transparent,
+            transparent,
 
-        rgba(255,255,255,.12),
+            rgba(255, 255, 255, .12),
 
-        transparent
+            transparent);
 
-    );
-
-    transform:translateX(-150%);
+    transform: translateX(-150%);
 
 }
 
-button:hover{
+button:hover {
 
-    transform:translateY(-5px);
+    transform: translateY(-5px);
 
-    border-color:var(--gold);
+    border-color: var(--gold);
 
     box-shadow:
 
-    0 20px 50px rgba(216,177,90,.18),
+        0 20px 50px rgba(216, 177, 90, .18),
 
-    inset 0 0 25px rgba(216,177,90,.08);
+        inset 0 0 25px rgba(216, 177, 90, .08);
 
 }
 
-button:hover::before{
+button:hover::before {
 
-    animation:buttonShine .8s;
+    animation: buttonShine .8s;
 
 }
 
@@ -1131,33 +1206,31 @@ button:hover::before{
     DIVISOR
 =========================*/
 
-.panel:not(.hero):not(.invite)::after{
+.panel:not(.hero):not(.invite)::after {
 
-    content:"";
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    bottom:50px;
+    bottom: 50px;
 
-    left:50%;
+    left: 50%;
 
-    transform:translateX(-50%);
+    transform: translateX(-50%);
 
-    width:70px;
+    width: 70px;
 
-    height:1px;
+    height: 1px;
 
     background:
 
-    linear-gradient(
-        to right,
+        linear-gradient(to right,
 
-        transparent,
+            transparent,
 
-        rgba(216,177,90,.25),
+            rgba(216, 177, 90, .25),
 
-        transparent
-    );
+            transparent);
 
 }
 
@@ -1165,45 +1238,45 @@ button:hover::before{
     KEYFRAMES
 =========================*/
 
-@keyframes buttonShine{
+@keyframes buttonShine {
 
-    from{
+    from {
 
-        transform:translateX(-150%);
+        transform: translateX(-150%);
 
     }
 
-    to{
+    to {
 
-        transform:translateX(150%);
+        transform: translateX(150%);
 
     }
 
 }
 
-@keyframes verseGlow{
+@keyframes verseGlow {
 
-    0%{
+    0% {
 
-        opacity:.15;
+        opacity: .15;
 
-        transform:translate(-50%,-50%) scale(1);
-
-    }
-
-    50%{
-
-        opacity:.45;
-
-        transform:translate(-50%,-50%) scale(1.08);
+        transform: translate(-50%, -50%) scale(1);
 
     }
 
-    100%{
+    50% {
 
-        opacity:.15;
+        opacity: .45;
 
-        transform:translate(-50%,-50%) scale(1);
+        transform: translate(-50%, -50%) scale(1.08);
+
+    }
+
+    100% {
+
+        opacity: .15;
+
+        transform: translate(-50%, -50%) scale(1);
 
     }
 
@@ -1224,12 +1297,12 @@ button:hover::before{
 .big,
 blockquote,
 button,
-.reference{
+.reference {
 
     will-change:
-    transform,
-    opacity,
-    filter;
+        transform,
+        opacity,
+        filter;
 
 }
 
@@ -1237,37 +1310,37 @@ button,
     ESTADO INICIAL
 =========================*/
 
-.fade-up{
+.fade-up {
 
-    opacity:0;
+    opacity: 0;
 
-    transform:translateY(80px);
-
-}
-
-.fade{
-
-    opacity:0;
+    transform: translateY(80px);
 
 }
 
-.scale{
+.fade {
 
-    transform:scale(.92);
-
-    opacity:0;
+    opacity: 0;
 
 }
 
-.blur{
+.scale {
 
-    filter:blur(12px);
+    transform: scale(.92);
+
+    opacity: 0;
 
 }
 
-.rotate{
+.blur {
 
-    transform:rotate(2deg);
+    filter: blur(12px);
+
+}
+
+.rotate {
+
+    transform: rotate(2deg);
 
 }
 
@@ -1275,25 +1348,25 @@ button,
     GSAP
 =========================*/
 
-.gsap-line{
+.gsap-line {
 
-    overflow:hidden;
-
-}
-
-.gsap-line span{
-
-    display:block;
-
-    transform:translateY(120%);
+    overflow: hidden;
 
 }
 
-.char{
+.gsap-line span {
 
-    display:inline-block;
+    display: block;
 
-    transform-origin:center;
+    transform: translateY(120%);
+
+}
+
+.char {
+
+    display: inline-block;
+
+    transform-origin: center;
 
 }
 
@@ -1301,13 +1374,13 @@ button,
     HERO
 =========================*/
 
-.hero.hide{
+.hero.hide {
 
-    opacity:0;
+    opacity: 0;
 
-    transform:scale(.96);
+    transform: scale(.96);
 
-    transition:1s;
+    transition: 1s;
 
 }
 
@@ -1315,25 +1388,25 @@ button,
     PAINEL ATIVO
 =========================*/
 
-.panel.active{
+.panel.active {
 
-    z-index:5;
-
-}
-
-.panel.active .big{
-
-    transform:translateY(0);
-
-    opacity:1;
+    z-index: 5;
 
 }
 
-.panel.active blockquote{
+.panel.active .big {
 
-    opacity:1;
+    transform: translateY(0);
 
-    transform:none;
+    opacity: 1;
+
+}
+
+.panel.active blockquote {
+
+    opacity: 1;
+
+    transform: none;
 
 }
 
@@ -1341,25 +1414,25 @@ button,
     TEXTO
 =========================*/
 
-.big{
+.big {
 
     transition:
 
-    opacity .9s,
+        opacity .9s,
 
-    transform .9s,
+        transform .9s,
 
-    filter .9s;
+        filter .9s;
 
 }
 
-blockquote{
+blockquote {
 
     transition:
 
-    opacity 1.2s,
+        opacity 1.2s,
 
-    transform 1.2s;
+        transform 1.2s;
 
 }
 
@@ -1367,9 +1440,9 @@ blockquote{
     PARALLAX
 =========================*/
 
-.parallax{
+.parallax {
 
-    transform:translateY(0);
+    transform: translateY(0);
 
 }
 
@@ -1377,27 +1450,23 @@ blockquote{
     BRILHO
 =========================*/
 
-.glow{
+.glow {
 
-    position:absolute;
+    position: absolute;
 
-    inset:0;
+    inset: 0;
 
-    pointer-events:none;
+    pointer-events: none;
 
-    opacity:0;
+    opacity: 0;
 
     background:
 
-    radial-gradient(
+        radial-gradient(circle at center,
 
-        circle at center,
+            rgba(216, 177, 90, .10),
 
-        rgba(216,177,90,.10),
-
-        transparent 60%
-
-    );
+            transparent 60%);
 
 }
 
@@ -1405,11 +1474,11 @@ blockquote{
     WORD
 =========================*/
 
-.word{
+.word {
 
-    display:inline-block;
+    display: inline-block;
 
-    overflow:hidden;
+    overflow: hidden;
 
 }
 
@@ -1417,17 +1486,15 @@ blockquote{
     CURSOR
 =========================*/
 
-@media (hover:hover){
+@media (hover:hover) {
 
-button:hover{
+    button:hover {
 
-    transform:
+        transform:
 
-    translateY(-6px)
+            translateY(-6px) scale(1.02);
 
-    scale(1.02);
-
-}
+    }
 
 }
 
@@ -1435,51 +1502,49 @@ button:hover{
     MOBILE
 =========================*/
 
-@media(max-width:768px){
+@media(max-width:768px) {
 
-.panel{
+    .panel {
 
-    padding:
+        padding:
 
-    40px
+            40px 24px;
 
-    24px;
+    }
 
-}
+    .reference {
 
-.reference{
+        margin-bottom: 55px;
 
-    margin-bottom:55px;
+        letter-spacing: .55rem;
 
-    letter-spacing:.55rem;
+    }
 
-}
+    .title {
 
-.title{
+        line-height: 1.08;
 
-    line-height:1.08;
+    }
 
-}
+    blockquote {
 
-blockquote{
+        line-height: 1.22;
 
-    line-height:1.22;
+    }
 
-}
+    .event {
 
-.event{
+        gap: 18px;
 
-    gap:18px;
+    }
 
-}
+    button {
 
-button{
+        width: 100%;
 
-    width:100%;
+        max-width: 360px;
 
-    max-width:360px;
-
-}
+    }
 
 }
 
@@ -1487,37 +1552,37 @@ button{
     SMALL MOBILE
 =========================*/
 
-@media(max-width:430px){
+@media(max-width:430px) {
 
-h1{
+    h1 {
 
-    font-size:2.8rem;
+        font-size: 2.8rem;
 
-}
+    }
 
-h2{
+    h2 {
 
-    font-size:2.4rem;
+        font-size: 2.4rem;
 
-}
+    }
 
-blockquote{
+    blockquote {
 
-    font-size:2rem;
+        font-size: 2rem;
 
-}
+    }
 
-.reference{
+    .reference {
 
-    font-size:1rem;
+        font-size: 1rem;
 
-}
+    }
 
-.description{
+    .description {
 
-    font-size:.95rem;
+        font-size: .95rem;
 
-}
+    }
 
 }
 
@@ -1525,19 +1590,19 @@ blockquote{
     LARGE
 =========================*/
 
-@media(min-width:1200px){
+@media(min-width:1200px) {
 
-.heroContent{
+    .heroContent {
 
-    max-width:950px;
+        max-width: 950px;
 
-}
+    }
 
-.big{
+    .big {
 
-    max-width:1000px;
+        max-width: 1000px;
 
-}
+    }
 
 }
 
@@ -1545,27 +1610,27 @@ blockquote{
     SAFE AREA
 =========================*/
 
-@supports(padding:max(0px)){
+@supports(padding:max(0px)) {
 
-.panel{
+    .panel {
 
-    padding-left:
+        padding-left:
 
-    max(28px,env(safe-area-inset-left));
+            max(28px, env(safe-area-inset-left));
 
-    padding-right:
+        padding-right:
 
-    max(28px,env(safe-area-inset-right));
+            max(28px, env(safe-area-inset-right));
 
-    padding-top:
+        padding-top:
 
-    max(40px,env(safe-area-inset-top));
+            max(40px, env(safe-area-inset-top));
 
-    padding-bottom:
+        padding-bottom:
 
-    max(40px,env(safe-area-inset-bottom));
+            max(40px, env(safe-area-inset-bottom));
 
-}
+    }
 
 }
 
@@ -1573,17 +1638,17 @@ blockquote{
     REDUCE MOTION
 =========================*/
 
-@media(prefers-reduced-motion:reduce){
+@media(prefers-reduced-motion:reduce) {
 
-*{
+    * {
 
-    animation:none !important;
+        animation: none !important;
 
-    transition:none !important;
+        transition: none !important;
 
-    scroll-behavior:auto !important;
+        scroll-behavior: auto !important;
 
-}
+    }
 
 }
 
@@ -1591,22 +1656,22 @@ blockquote{
     LOADING
 =========================*/
 
-body.loading{
+body.loading {
 
-    overflow:hidden;
-
-}
-
-body.loading .panel{
-
-    opacity:0;
+    overflow: hidden;
 
 }
 
-body.loaded .panel{
+body.loading .panel {
 
-    opacity:1;
+    opacity: 0;
 
-    transition:opacity 1.2s;
+}
+
+body.loaded .panel {
+
+    opacity: 1;
+
+    transition: opacity 1.2s;
 
 }
