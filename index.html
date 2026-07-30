@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>8:36</title>
+
+    <meta name="theme-color" content="#090909">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+    <!-- ===========================
+            PARTÍCULAS
+    ============================ -->
+
+    <canvas id="particles"></canvas>
+
+    <!-- ===========================
+            ÁUDIOS
+    ============================ -->
+
+    <audio
+        id="music"
+        loop
+        preload="auto">
+
+        <source src="assets/music.mp3" type="audio/mpeg">
+
+    </audio>
+
+    <audio
+        id="whoosh"
+        preload="auto">
+
+        <source src="assets/whoosh.mp3" type="audio/mpeg">
+
+    </audio>
+
+    <audio
+        id="piano"
+        preload="auto">
+
+        <source src="assets/piano.mp3" type="audio/mpeg">
+
+    </audio>
+
+    <!-- ===========================
+            BACKGROUND
+    ============================ -->
+
+    <div class="backgroundGlow"></div>
+
+    <div class="noise"></div>
+
+    <!-- ===========================
+            HERO
+    ============================ -->
+
+    <section
+        class="panel hero">
+
+        <div class="heroContent">
+
+            <span class="reference">
+                8:36
+            </span>
+
+            <h1 class="title">
+
+                Você acredita
+                <br>
+
+                que é
+                <br>
+
+                <span>realmente livre?</span>
+
+            </h1>
+
+            <div class="indicator">
+
+                <span></span>
+
+            </div>
+
+            <p class="hint">
+
+                deslize para descobrir
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ===========================
+            LIBERDADES
+    ============================ -->
+
+    <section class="panel">
+
+        <h2 class="big">
+
+            Você é livre...
+
+        </h2>
+
+    </section>
+
+    <section class="panel">
+
+        <h2 class="big">
+
+            para escolher
+            sua profissão.
+
+        </h2>
+
+    </section>
+
+    <section class="panel">
+
+        <h2 class="big">
+
+            para viajar.
+
+        </h2>
+
+    </section>
+
+    <section class="panel">
+
+        <h2 class="big">
+
+            para amar.
+
+        </h2>
+
+    </section>
+
+    <!-- ===========================
+            MUDANÇA
+    ============================ -->
+
+    <section class="panel dark">
+
+        <h2 class="big gold">
+
+            Mas...
+
+        </h2>
+
+    </section>
+
+    <section class="panel">
+
+        <h2 class="big">
+
+            você é livre
+            da culpa?
+
+        </h2>
+
+    </section>
+
+    <section class="panel">
+
+        <h2 class="big">
+
+            do medo?
+
+        </h2>
+
+    </section>
+
+    <section class="panel">
+
+        <h2 class="big">
+
+            da ansiedade?
+
+        </h2>
+
+    </section>
+
+    <section class="panel">
+
+        <h2 class="big">
+
+            do pecado?
+
+        </h2>
+
+    </section>
+
+    <!-- ===========================
+            VERSÍCULO
+    ============================ -->
+
+    <section
+        class="panel verse">
+
+        <div class="light"></div>
+
+        <blockquote>
+
+            Se, pois,
+
+            o Filho vos libertar,
+
+            verdadeiramente
+
+            sereis livres.
+
+        </blockquote>
+
+        <small>
+
+            João 8:36
+
+        </small>
+
+    </section>
+
+    <!-- ===========================
+            MENSAGEM
+    ============================ -->
+
+    <section class="panel">
+
+        <h2 class="big">
+
+            A verdadeira liberdade
+            começa em Cristo.
+
+        </h2>
+
+        <p class="description">
+
+            A liberdade que Jesus oferece
+            não depende das circunstâncias.
+
+            Ela transforma o coração.
+
+        </p>
+
+    </section>
+
+    <!-- ===========================
+            CONVITE
+    ============================ -->
+
+    <section class="panel invite">
+
+        <h2>
+
+            Você é nosso convidado.
+
+        </h2>
+
+        <div class="event">
+
+            <p>
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                Igreja Assembleia de Deus
+
+            </p>
+
+            <p>
+
+                <i class="fa-solid fa-calendar"></i>
+
+                01 de Agosto
+
+            </p>
+
+            <p>
+
+                <i class="fa-solid fa-clock"></i>
+
+                19:30
+
+            </p>
+
+        </div>
+
+        <button>
+
+            Quero conhecer essa liberdade
+
+        </button>
+
+    </section>
+
+    <!-- ===========================
+            LIBS
+    ============================ -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+    <script src="https://unpkg.com/split-type"></script>
+
+    <!-- ===========================
+            SCRIPT
+    ============================ -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

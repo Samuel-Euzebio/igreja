@@ -1,0 +1,1612 @@
+/* =======================================================
+   8:36 EXPERIENCE
+   STYLE.CSS
+   PARTE 1 — BASE / RESET / LAYOUT
+======================================================= */
+
+/* ==========================
+   GOOGLE FONT
+========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ==========================
+   RESET
+========================== */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+    overflow-x:hidden;
+
+    font-size:16px;
+
+}
+
+body{
+
+    overflow-x:hidden;
+
+    background:#070707;
+
+    color:#fff;
+
+    font-family:"Inter",sans-serif;
+
+    -webkit-font-smoothing:antialiased;
+
+    text-rendering:optimizeLegibility;
+
+    cursor:default;
+
+}
+
+/* ==========================
+   VARIÁVEIS
+========================== */
+
+:root{
+
+    --bg:#070707;
+
+    --bg2:#0f0f0f;
+
+    --white:#FAFAFA;
+
+    --gray:#BDBDBD;
+
+    --gray2:#7C7C7C;
+
+    --gold:#D8B15A;
+
+    --goldLight:#F0CF86;
+
+    --border:rgba(255,255,255,.08);
+
+    --glass:rgba(255,255,255,.03);
+
+    --transition:.7s cubic-bezier(.19,1,.22,1);
+
+}
+
+/* ==========================
+   SELEÇÃO
+========================== */
+
+::selection{
+
+    background:var(--gold);
+
+    color:#111;
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+    width:7px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#070707;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:rgba(216,177,90,.35);
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--gold);
+
+}
+
+/* ==========================
+   BODY
+========================== */
+
+body{
+
+    position:relative;
+
+    min-height:100vh;
+
+}
+
+/* =======================================================
+    BACKGROUND
+======================================================= */
+
+.backgroundGlow{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-3;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(216,177,90,.10),
+            transparent 55%
+        );
+
+    transition:1s;
+
+}
+
+/* =======================================================
+    NOISE
+======================================================= */
+
+.noise{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-2;
+
+    opacity:.035;
+
+    pointer-events:none;
+
+    background-image:
+    url("https://grainy-gradients.vercel.app/noise.svg");
+
+    background-size:250px;
+
+}
+
+/* =======================================================
+    CANVAS
+======================================================= */
+
+#particles{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    z-index:-1;
+
+    pointer-events:none;
+
+}
+
+/* =======================================================
+    PANELS
+======================================================= */
+
+.panel{
+
+    position:relative;
+
+    width:100%;
+
+    min-height:100svh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    padding:40px 28px;
+
+    text-align:center;
+
+}
+
+/* =======================================================
+    DARK PANEL
+======================================================= */
+
+.dark{
+
+    background:linear-gradient(
+
+        to bottom,
+
+        rgba(0,0,0,.15),
+
+        rgba(0,0,0,.45)
+
+    );
+
+}
+
+/* =======================================================
+    CONTAINER
+======================================================= */
+
+.heroContent{
+
+    width:100%;
+
+    max-width:850px;
+
+    margin:auto;
+
+}
+
+/* =======================================================
+    TITLES
+======================================================= */
+
+h1,
+h2,
+blockquote{
+
+    font-weight:300;
+
+    letter-spacing:-2px;
+
+    line-height:1.05;
+
+    color:var(--white);
+
+}
+
+h1{
+
+    font-size:clamp(3rem,8vw,6rem);
+
+}
+
+h2{
+
+    font-size:clamp(2.7rem,8vw,5rem);
+
+}
+
+.big{
+
+    max-width:900px;
+
+}
+
+/* =======================================================
+    PARAGRAPHS
+======================================================= */
+
+p{
+
+    color:var(--gray);
+
+    line-height:1.8;
+
+    font-size:1rem;
+
+}
+
+.description{
+
+    margin-top:35px;
+
+    max-width:700px;
+
+    font-size:1.05rem;
+
+}
+
+/* =======================================================
+    GOLD
+======================================================= */
+
+.gold{
+
+    color:var(--gold);
+
+}
+
+/* =======================================================
+    FADE INITIAL
+======================================================= */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(70px);
+
+}
+
+/* =======================================================
+    LIGHT
+======================================================= */
+
+.light{
+
+    position:absolute;
+
+    width:450px;
+
+    height:450px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(216,177,90,.18),
+
+            transparent 70%
+
+        );
+
+    filter:blur(55px);
+
+    opacity:0;
+
+    z-index:-1;
+
+}
+
+/* =======================================================
+    LINKS
+======================================================= */
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+/* =======================================================
+    BUTTON RESET
+======================================================= */
+
+button{
+
+    font-family:inherit;
+
+    outline:none;
+
+    border:none;
+
+    background:none;
+
+}
+
+/* =======================================================
+   PARTE 2 — HERO
+=======================================================*/
+
+/*=========================
+    HERO
+=========================*/
+
+.hero{
+
+    overflow:hidden;
+
+}
+
+/*=========================
+    8:36
+=========================*/
+
+.reference{
+
+    display:inline-block;
+
+    margin-bottom:70px;
+
+    color:var(--gold);
+
+    font-size:1.15rem;
+
+    font-weight:500;
+
+    letter-spacing:.85rem;
+
+    text-transform:uppercase;
+
+    position:relative;
+
+    opacity:.9;
+
+    transition:var(--transition);
+
+}
+
+.reference::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:-22px;
+
+    transform:translateX(-50%);
+
+    width:80px;
+
+    height:2px;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        var(--gold),
+        transparent
+    );
+
+    box-shadow:
+        0 0 10px rgba(216,177,90,.4),
+        0 0 30px rgba(216,177,90,.2);
+
+}
+
+/*=========================
+    TITLE
+=========================*/
+
+.title{
+
+    position:relative;
+
+    max-width:900px;
+
+    margin:auto;
+
+    font-weight:300;
+
+    line-height:1.02;
+
+    text-wrap:balance;
+
+}
+
+.title span{
+
+    position:relative;
+
+    color:var(--gold);
+
+    font-weight:500;
+
+}
+
+/* brilho passando na palavra */
+
+.title span::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:-5%;
+
+    left:-30%;
+
+    width:35%;
+
+    height:110%;
+
+    background:linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.85),
+
+        transparent
+
+    );
+
+    transform:skewX(-20deg);
+
+    animation:shine 6s infinite;
+
+    filter:blur(2px);
+
+}
+
+/*=========================
+    HINT
+=========================*/
+
+.hint{
+
+    margin-top:30px;
+
+    font-size:.8rem;
+
+    letter-spacing:.35rem;
+
+    text-transform:uppercase;
+
+    color:var(--gray2);
+
+}
+
+/*=========================
+    INDICADOR
+=========================*/
+
+.indicator{
+
+    margin:90px auto 0;
+
+    width:28px;
+
+    height:54px;
+
+    border-radius:30px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    display:flex;
+
+    justify-content:center;
+
+    padding-top:10px;
+
+    position:relative;
+
+    backdrop-filter:blur(10px);
+
+}
+
+.indicator span{
+
+    width:5px;
+
+    height:11px;
+
+    border-radius:20px;
+
+    background:var(--gold);
+
+    animation:scrollIndicator 2s infinite;
+
+}
+
+/*=========================
+    HERO GLOW
+=========================*/
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+
+    height:700px;
+
+    left:50%;
+
+    top:45%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(216,177,90,.10),
+
+            transparent 65%
+
+        );
+
+    filter:blur(80px);
+
+    animation:pulseGlow 6s ease-in-out infinite;
+
+    z-index:-1;
+
+}
+
+/*=========================
+    HERO VIGNETTE
+=========================*/
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            transparent 45%,
+
+            rgba(0,0,0,.35)
+
+        );
+
+    pointer-events:none;
+
+}
+
+/*=========================
+    HERO TRANSITION
+=========================*/
+
+.heroContent>*{
+
+    will-change:transform,opacity;
+
+}
+
+/*=========================
+    IDLE ANIMATION
+=========================*/
+
+.title{
+
+    animation:breath 7s ease-in-out infinite;
+
+}
+
+/*=========================
+    KEYFRAMES
+=========================*/
+
+@keyframes breath{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.015);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+@keyframes pulseGlow{
+
+    0%{
+
+        opacity:.25;
+
+        transform:translate(-50%,-50%) scale(1);
+
+    }
+
+    50%{
+
+        opacity:.5;
+
+        transform:translate(-50%,-50%) scale(1.08);
+
+    }
+
+    100%{
+
+        opacity:.25;
+
+        transform:translate(-50%,-50%) scale(1);
+
+    }
+
+}
+
+@keyframes scrollIndicator{
+
+    0%{
+
+        opacity:0;
+
+        transform:translateY(0);
+
+    }
+
+    30%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+}
+
+@keyframes shine{
+
+    0%{
+
+        left:-35%;
+
+    }
+
+    100%{
+
+        left:130%;
+
+    }
+
+}
+
+/* =======================================================
+   PARTE 3 — SECTIONS / VERSÍCULO / CONVITE
+=======================================================*/
+
+/*=========================
+    SEÇÕES
+=========================*/
+
+.panel{
+
+    position:relative;
+
+    isolation:isolate;
+
+    overflow:hidden;
+
+}
+
+.panel::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle at center,
+    rgba(255,255,255,.015),
+    transparent 70%);
+
+    opacity:0;
+
+    transition:1s;
+
+}
+
+.panel.active::before{
+
+    opacity:1;
+
+}
+
+/*=========================
+    TÍTULOS
+=========================*/
+
+.big{
+
+    max-width:900px;
+
+    margin:auto;
+
+    line-height:1.08;
+
+    font-weight:300;
+
+    text-wrap:balance;
+
+    transition:.8s;
+
+}
+
+.big strong{
+
+    color:var(--gold);
+
+    font-weight:500;
+
+}
+
+/*=========================
+    FRASE "MAS..."
+=========================*/
+
+.dark{
+
+    background:
+
+    radial-gradient(circle at center,
+    rgba(216,177,90,.03),
+    transparent 70%),
+
+    linear-gradient(
+        to bottom,
+        #080808,
+        #050505
+    );
+
+}
+
+.dark .big{
+
+    font-size:clamp(3rem,9vw,6rem);
+
+    color:var(--gold);
+
+    letter-spacing:-3px;
+
+}
+
+/*=========================
+    VERSÍCULO
+=========================*/
+
+.verse{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.verse::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:900px;
+
+    height:900px;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,
+
+    rgba(216,177,90,.18),
+
+    transparent 65%);
+
+    filter:blur(120px);
+
+    opacity:.2;
+
+    animation:verseGlow 8s ease infinite;
+
+}
+
+blockquote{
+
+    max-width:850px;
+
+    font-size:clamp(2.2rem,8vw,5rem);
+
+    line-height:1.15;
+
+    font-weight:300;
+
+    z-index:2;
+
+    position:relative;
+
+    text-wrap:balance;
+
+}
+
+blockquote .word{
+
+    display:inline-block;
+
+}
+
+small{
+
+    margin-top:45px;
+
+    color:var(--gold);
+
+    letter-spacing:.35rem;
+
+    text-transform:uppercase;
+
+    font-size:.9rem;
+
+    opacity:.9;
+
+}
+
+/*=========================
+    DESCRIÇÃO
+=========================*/
+
+.description{
+
+    margin-top:45px;
+
+    max-width:700px;
+
+    color:var(--gray);
+
+    font-size:1.05rem;
+
+    line-height:2;
+
+}
+
+/*=========================
+    CONVITE
+=========================*/
+
+.invite{
+
+    position:relative;
+
+}
+
+.invite h2{
+
+    font-size:clamp(2.7rem,8vw,5rem);
+
+    margin-bottom:70px;
+
+}
+
+.event{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+    margin-bottom:60px;
+
+}
+
+.event p{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:14px;
+
+    color:var(--gray);
+
+    font-size:1rem;
+
+}
+
+.event i{
+
+    color:var(--gold);
+
+    width:22px;
+
+}
+
+/*=========================
+    BOTÃO
+=========================*/
+
+button{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:20px 42px;
+
+    border-radius:999px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    font-weight:500;
+
+    letter-spacing:.05rem;
+
+    border:1px solid rgba(216,177,90,.25);
+
+    backdrop-filter:blur(18px);
+
+    background:rgba(255,255,255,.02);
+
+    transition:.45s cubic-bezier(.19,1,.22,1);
+
+}
+
+button::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+        120deg,
+
+        transparent,
+
+        rgba(255,255,255,.12),
+
+        transparent
+
+    );
+
+    transform:translateX(-150%);
+
+}
+
+button:hover{
+
+    transform:translateY(-5px);
+
+    border-color:var(--gold);
+
+    box-shadow:
+
+    0 20px 50px rgba(216,177,90,.18),
+
+    inset 0 0 25px rgba(216,177,90,.08);
+
+}
+
+button:hover::before{
+
+    animation:buttonShine .8s;
+
+}
+
+/*=========================
+    DIVISOR
+=========================*/
+
+.panel:not(.hero):not(.invite)::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:50px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:70px;
+
+    height:1px;
+
+    background:
+
+    linear-gradient(
+        to right,
+
+        transparent,
+
+        rgba(216,177,90,.25),
+
+        transparent
+    );
+
+}
+
+/*=========================
+    KEYFRAMES
+=========================*/
+
+@keyframes buttonShine{
+
+    from{
+
+        transform:translateX(-150%);
+
+    }
+
+    to{
+
+        transform:translateX(150%);
+
+    }
+
+}
+
+@keyframes verseGlow{
+
+    0%{
+
+        opacity:.15;
+
+        transform:translate(-50%,-50%) scale(1);
+
+    }
+
+    50%{
+
+        opacity:.45;
+
+        transform:translate(-50%,-50%) scale(1.08);
+
+    }
+
+    100%{
+
+        opacity:.15;
+
+        transform:translate(-50%,-50%) scale(1);
+
+    }
+
+}
+
+/* =======================================================
+   PARTE 4 — ANIMAÇÕES / GSAP / RESPONSIVO
+=======================================================*/
+
+/*=========================
+    PERFORMANCE
+=========================*/
+
+.panel,
+.hero,
+.heroContent,
+.title,
+.big,
+blockquote,
+button,
+.reference{
+
+    will-change:
+    transform,
+    opacity,
+    filter;
+
+}
+
+/*=========================
+    ESTADO INICIAL
+=========================*/
+
+.fade-up{
+
+    opacity:0;
+
+    transform:translateY(80px);
+
+}
+
+.fade{
+
+    opacity:0;
+
+}
+
+.scale{
+
+    transform:scale(.92);
+
+    opacity:0;
+
+}
+
+.blur{
+
+    filter:blur(12px);
+
+}
+
+.rotate{
+
+    transform:rotate(2deg);
+
+}
+
+/*=========================
+    GSAP
+=========================*/
+
+.gsap-line{
+
+    overflow:hidden;
+
+}
+
+.gsap-line span{
+
+    display:block;
+
+    transform:translateY(120%);
+
+}
+
+.char{
+
+    display:inline-block;
+
+    transform-origin:center;
+
+}
+
+/*=========================
+    HERO
+=========================*/
+
+.hero.hide{
+
+    opacity:0;
+
+    transform:scale(.96);
+
+    transition:1s;
+
+}
+
+/*=========================
+    PAINEL ATIVO
+=========================*/
+
+.panel.active{
+
+    z-index:5;
+
+}
+
+.panel.active .big{
+
+    transform:translateY(0);
+
+    opacity:1;
+
+}
+
+.panel.active blockquote{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
+/*=========================
+    TEXTO
+=========================*/
+
+.big{
+
+    transition:
+
+    opacity .9s,
+
+    transform .9s,
+
+    filter .9s;
+
+}
+
+blockquote{
+
+    transition:
+
+    opacity 1.2s,
+
+    transform 1.2s;
+
+}
+
+/*=========================
+    PARALLAX
+=========================*/
+
+.parallax{
+
+    transform:translateY(0);
+
+}
+
+/*=========================
+    BRILHO
+=========================*/
+
+.glow{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    background:
+
+    radial-gradient(
+
+        circle at center,
+
+        rgba(216,177,90,.10),
+
+        transparent 60%
+
+    );
+
+}
+
+/*=========================
+    WORD
+=========================*/
+
+.word{
+
+    display:inline-block;
+
+    overflow:hidden;
+
+}
+
+/*=========================
+    CURSOR
+=========================*/
+
+@media (hover:hover){
+
+button:hover{
+
+    transform:
+
+    translateY(-6px)
+
+    scale(1.02);
+
+}
+
+}
+
+/*=========================
+    MOBILE
+=========================*/
+
+@media(max-width:768px){
+
+.panel{
+
+    padding:
+
+    40px
+
+    24px;
+
+}
+
+.reference{
+
+    margin-bottom:55px;
+
+    letter-spacing:.55rem;
+
+}
+
+.title{
+
+    line-height:1.08;
+
+}
+
+blockquote{
+
+    line-height:1.22;
+
+}
+
+.event{
+
+    gap:18px;
+
+}
+
+button{
+
+    width:100%;
+
+    max-width:360px;
+
+}
+
+}
+
+/*=========================
+    SMALL MOBILE
+=========================*/
+
+@media(max-width:430px){
+
+h1{
+
+    font-size:2.8rem;
+
+}
+
+h2{
+
+    font-size:2.4rem;
+
+}
+
+blockquote{
+
+    font-size:2rem;
+
+}
+
+.reference{
+
+    font-size:1rem;
+
+}
+
+.description{
+
+    font-size:.95rem;
+
+}
+
+}
+
+/*=========================
+    LARGE
+=========================*/
+
+@media(min-width:1200px){
+
+.heroContent{
+
+    max-width:950px;
+
+}
+
+.big{
+
+    max-width:1000px;
+
+}
+
+}
+
+/*=========================
+    SAFE AREA
+=========================*/
+
+@supports(padding:max(0px)){
+
+.panel{
+
+    padding-left:
+
+    max(28px,env(safe-area-inset-left));
+
+    padding-right:
+
+    max(28px,env(safe-area-inset-right));
+
+    padding-top:
+
+    max(40px,env(safe-area-inset-top));
+
+    padding-bottom:
+
+    max(40px,env(safe-area-inset-bottom));
+
+}
+
+}
+
+/*=========================
+    REDUCE MOTION
+=========================*/
+
+@media(prefers-reduced-motion:reduce){
+
+*{
+
+    animation:none !important;
+
+    transition:none !important;
+
+    scroll-behavior:auto !important;
+
+}
+
+}
+
+/*=========================
+    LOADING
+=========================*/
+
+body.loading{
+
+    overflow:hidden;
+
+}
+
+body.loading .panel{
+
+    opacity:0;
+
+}
+
+body.loaded .panel{
+
+    opacity:1;
+
+    transition:opacity 1.2s;
+
+}
