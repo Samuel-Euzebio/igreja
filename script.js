@@ -27,21 +27,21 @@ window.addEventListener("load", () => {
 
 const lenis = new Lenis({
 
-    duration:1.25,
+    duration: 1.25,
 
-    smoothWheel:true,
+    smoothWheel: true,
 
-    smoothTouch:false,
+    smoothTouch: false,
 
-    touchMultiplier:1.2,
+    touchMultiplier: 1.2,
 
-    wheelMultiplier:1,
+    wheelMultiplier: 1,
 
-    infinite:false
+    infinite: false
 
 });
 
-function raf(time){
+function raf(time) {
 
     lenis.raf(time);
 
@@ -57,9 +57,9 @@ requestAnimationFrame(raf);
 
 lenis.on("scroll", ScrollTrigger.update);
 
-gsap.ticker.add((time)=>{
+gsap.ticker.add((time) => {
 
-    lenis.raf(time*1000);
+    lenis.raf(time * 1000);
 
 });
 
@@ -95,65 +95,67 @@ piano.volume = .25;
     PRIMEIRA INTERAÇÃO
 =========================================================*/
 
+const overlay = document.getElementById("audioOverlay");
+
 let started = false;
 
-async function startExperience(){
+overlay.addEventListener("click", async () => {
 
-    if(started) return;
+    if (started) return;
 
     started = true;
 
-    try{
+    try {
 
         music.volume = 0;
 
         await music.play();
 
-        gsap.to(music,{
-            volume:0.15,
-            duration:2,
-            ease:"power2.out"
+        gsap.to(music, {
+            volume: 0.15,
+            duration: 2,
+            ease: "power2.out"
         });
 
-    }catch(err){
+    } catch (err) {
 
-        console.log("Não foi possível iniciar o áudio:", err);
+        console.error(err);
 
         started = false;
 
+        return;
+
     }
 
-}
+    gsap.to(overlay, {
+        opacity: 0,
+        duration: 0.6,
+        onComplete() {
+            overlay.remove();
+        }
+    });
 
-document.addEventListener("pointerdown", startExperience, { once:true });
-
-document.addEventListener("click", startExperience, { once:true });
-
-window.addEventListener("touchstart",startExperience,{once:true});
-
-window.addEventListener("wheel",startExperience,{once:true});
-
-window.addEventListener("keydown",startExperience,{once:true});
+});
 
 /*=========================================================
     SPLIT TYPE
 =========================================================*/
 
-new SplitType(".title",{
+new SplitType(".title", {
 
-    types:"words,chars"
-
-});
-
-new SplitType(".big",{
-
-    types:"words,chars"
+    types: "words,chars"
 
 });
 
-new SplitType("blockquote",{
+new SplitType(".big", {
 
-    types:"lines,words,chars"
+    types: "words,chars"
+
+});
+
+new SplitType("blockquote", {
+
+    types: "lines,words,chars"
 
 });
 
@@ -161,39 +163,39 @@ new SplitType("blockquote",{
     ESTADO INICIAL
 =========================================================*/
 
-gsap.set(".char",{
+gsap.set(".char", {
 
-    opacity:0,
+    opacity: 0,
 
-    y:80,
+    y: 80,
 
-    rotateX:-90,
+    rotateX: -90,
 
-    transformOrigin:"50% 100%"
-
-});
-
-gsap.set(".hint",{
-
-    opacity:0,
-
-    y:20
+    transformOrigin: "50% 100%"
 
 });
 
-gsap.set(".indicator",{
+gsap.set(".hint", {
 
-    opacity:0,
+    opacity: 0,
 
-    y:20
+    y: 20
 
 });
 
-gsap.set(".reference",{
+gsap.set(".indicator", {
 
-    opacity:0,
+    opacity: 0,
 
-    y:-20
+    y: 20
+
+});
+
+gsap.set(".reference", {
+
+    opacity: 0,
+
+    y: -20
 
 });
 
@@ -205,54 +207,54 @@ const intro = gsap.timeline();
 
 intro
 
-.to(".reference", {
-    opacity: 1,
-    y: 0,
-    duration: 0.25
-})
+    .to(".reference", {
+        opacity: 1,
+        y: 0,
+        duration: 0.25
+    })
 
-.to(".char", {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    stagger: 0.006,
-    ease: "power2.out",
-    duration: 0.35
-}, "<")
+    .to(".char", {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        stagger: 0.006,
+        ease: "power2.out",
+        duration: 0.35
+    }, "<")
 
-.to(".indicator", {
-    opacity: 1,
-    y: 0,
-    duration: 0.3
-}, "<")
+    .to(".indicator", {
+        opacity: 1,
+        y: 0,
+        duration: 0.3
+    }, "<")
 
-.to(".hint", {
-    opacity: 1,
-    y: 0,
-    duration: 0.3
-}, "<");
+    .to(".hint", {
+        opacity: 1,
+        y: 0,
+        duration: 0.3
+    }, "<");
 
 /*=========================================================
     HERO PARALLAX
 =========================================================*/
 
-gsap.to(".heroContent",{
+gsap.to(".heroContent", {
 
-    y:-120,
+    y: -120,
 
-    opacity:.2,
+    opacity: .2,
 
-    ease:"none",
+    ease: "none",
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:".hero",
+        trigger: ".hero",
 
-        start:"top top",
+        start: "top top",
 
-        end:"bottom top",
+        end: "bottom top",
 
-        scrub:true
+        scrub: true
 
     }
 
@@ -262,13 +264,13 @@ gsap.to(".heroContent",{
     BACKGROUND GLOW
 =========================================================*/
 
-gsap.to(glow,{
+gsap.to(glow, {
 
-    opacity:1,
+    opacity: 1,
 
-    duration:2,
+    duration: 2,
 
-    ease:"power2.out"
+    ease: "power2.out"
 
 });
 
@@ -299,9 +301,9 @@ panels.forEach((panel, index) => {
 
 });
 
-function activatePanel(panel, index){
+function activatePanel(panel, index) {
 
-    panels.forEach(p=>p.classList.remove("active"));
+    panels.forEach(p => p.classList.remove("active"));
 
     panel.classList.add("active");
 
@@ -311,39 +313,39 @@ function activatePanel(panel, index){
     REVEAL DOS PAINÉIS
 =========================================================*/
 
-gsap.utils.toArray(".panel").forEach(panel=>{
+gsap.utils.toArray(".panel").forEach(panel => {
 
     const chars = panel.querySelectorAll(".char");
 
     gsap.fromTo(chars,
 
         {
-            y:90,
-            opacity:0,
-            rotateX:-90
+            y: 90,
+            opacity: 0,
+            rotateX: -90
         },
 
         {
 
-            y:0,
+            y: 0,
 
-            opacity:1,
+            opacity: 1,
 
-            rotateX:0,
+            rotateX: 0,
 
-            stagger:.018,
+            stagger: .018,
 
-            duration:.9,
+            duration: .9,
 
-            ease:"power4.out",
+            ease: "power4.out",
 
-            scrollTrigger:{
+            scrollTrigger: {
 
-                trigger:panel,
+                trigger: panel,
 
-                start:"top 65%",
+                start: "top 65%",
 
-                toggleActions:"play none none reverse"
+                toggleActions: "play none none reverse"
 
             }
 
@@ -357,23 +359,23 @@ gsap.utils.toArray(".panel").forEach(panel=>{
 
 let currentPanel = -1;
 
-panels.forEach((panel,index)=>{
+panels.forEach((panel, index) => {
 
     ScrollTrigger.create({
 
-        trigger:panel,
+        trigger: panel,
 
-        start:"top center",
+        start: "top center",
 
-        onEnter:()=>{
+        onEnter: () => {
 
-            if(currentPanel===index) return;
+            if (currentPanel === index) return;
 
-            currentPanel=index;
+            currentPanel = index;
 
-            whoosh.currentTime=0;
+            whoosh.currentTime = 0;
 
-            whoosh.play().catch(()=>{});
+            whoosh.play().catch(() => { });
 
         }
 
@@ -385,61 +387,61 @@ panels.forEach((panel,index)=>{
     BACKGROUND
 =========================================================*/
 
-const colors=[
+const colors = [
 
-"#080808",
+    "#080808",
 
-"#090909",
+    "#090909",
 
-"#0b0b0b",
+    "#0b0b0b",
 
-"#101010",
+    "#101010",
 
-"#131313",
+    "#131313",
 
-"#171717",
+    "#171717",
 
-"#1a1a1a",
+    "#1a1a1a",
 
-"#1f1b15",
+    "#1f1b15",
 
-"#252018",
+    "#252018",
 
-"#2d261a",
+    "#2d261a",
 
-"#090909",
+    "#090909",
 
-"#090909"
+    "#090909"
 
 ];
 
-panels.forEach((panel,index)=>{
+panels.forEach((panel, index) => {
 
     ScrollTrigger.create({
 
-        trigger:panel,
+        trigger: panel,
 
-        start:"top center",
+        start: "top center",
 
-        onEnter:()=>{
+        onEnter: () => {
 
-            gsap.to(document.body,{
+            gsap.to(document.body, {
 
-                backgroundColor:colors[index]||"#090909",
+                backgroundColor: colors[index] || "#090909",
 
-                duration:1.5
+                duration: 1.5
 
             });
 
         },
 
-        onEnterBack:()=>{
+        onEnterBack: () => {
 
-            gsap.to(document.body,{
+            gsap.to(document.body, {
 
-                backgroundColor:colors[index]||"#090909",
+                backgroundColor: colors[index] || "#090909",
 
-                duration:1.5
+                duration: 1.5
 
             });
 
@@ -453,21 +455,21 @@ panels.forEach((panel,index)=>{
     GLOW
 =========================================================*/
 
-panels.forEach((panel,index)=>{
+panels.forEach((panel, index) => {
 
     ScrollTrigger.create({
 
-        trigger:panel,
+        trigger: panel,
 
-        start:"top center",
+        start: "top center",
 
-        onEnter:()=>{
+        onEnter: () => {
 
-            gsap.to(glow,{
+            gsap.to(glow, {
 
-                opacity:.18+(index*.03),
+                opacity: .18 + (index * .03),
 
-                duration:1
+                duration: 1
 
             });
 
@@ -481,23 +483,23 @@ panels.forEach((panel,index)=>{
     PARALLAX DOS TÍTULOS
 =========================================================*/
 
-gsap.utils.toArray(".big").forEach(title=>{
+gsap.utils.toArray(".big").forEach(title => {
 
-    gsap.to(title,{
+    gsap.to(title, {
 
-        y:-35,
+        y: -35,
 
-        ease:"none",
+        ease: "none",
 
-        scrollTrigger:{
+        scrollTrigger: {
 
-            trigger:title,
+            trigger: title,
 
-            start:"top bottom",
+            start: "top bottom",
 
-            end:"bottom top",
+            end: "bottom top",
 
-            scrub:true
+            scrub: true
 
         }
 
@@ -509,21 +511,21 @@ gsap.utils.toArray(".big").forEach(title=>{
     SCALE HERO
 =========================================================*/
 
-gsap.to(".hero",{
+gsap.to(".hero", {
 
-    scale:.95,
+    scale: .95,
 
-    filter:"blur(3px)",
+    filter: "blur(3px)",
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:".hero",
+        trigger: ".hero",
 
-        start:"top top",
+        start: "top top",
 
-        end:"bottom top",
+        end: "bottom top",
 
-        scrub:true
+        scrub: true
 
     }
 
@@ -533,25 +535,25 @@ gsap.to(".hero",{
     REFERENCE
 =========================================================*/
 
-gsap.to(".reference",{
+gsap.to(".reference", {
 
-    scale:.7,
+    scale: .7,
 
-    y:-100,
+    y: -100,
 
-    opacity:.35,
+    opacity: .35,
 
-    ease:"none",
+    ease: "none",
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:".hero",
+        trigger: ".hero",
 
-        start:"top top",
+        start: "top top",
 
-        end:"bottom top",
+        end: "bottom top",
 
-        scrub:true
+        scrub: true
 
     }
 
@@ -561,21 +563,21 @@ gsap.to(".reference",{
     INDICADOR
 =========================================================*/
 
-gsap.to(".indicator",{
+gsap.to(".indicator", {
 
-    opacity:0,
+    opacity: 0,
 
-    y:20,
+    y: 20,
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:".hero",
+        trigger: ".hero",
 
-        start:"top top",
+        start: "top top",
 
-        end:"40% top",
+        end: "40% top",
 
-        scrub:true
+        scrub: true
 
     }
 
@@ -585,21 +587,21 @@ gsap.to(".indicator",{
     HINT
 =========================================================*/
 
-gsap.to(".hint",{
+gsap.to(".hint", {
 
-    opacity:0,
+    opacity: 0,
 
-    y:20,
+    y: 20,
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:".hero",
+        trigger: ".hero",
 
-        start:"top top",
+        start: "top top",
 
-        end:"40% top",
+        end: "40% top",
 
-        scrub:true
+        scrub: true
 
     }
 
@@ -609,21 +611,21 @@ gsap.to(".hint",{
     PAINEL ESCURO
 =========================================================*/
 
-gsap.from(".dark .big",{
+gsap.from(".dark .big", {
 
-    scale:.75,
+    scale: .75,
 
-    opacity:0,
+    opacity: 0,
 
-    duration:1.4,
+    duration: 1.4,
 
-    ease:"expo.out",
+    ease: "expo.out",
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:".dark",
+        trigger: ".dark",
 
-        start:"top 65%"
+        start: "top 65%"
 
     }
 
@@ -650,10 +652,10 @@ const verseSplit = new SplitType(verse, {
     types: "words,chars"
 });
 
-gsap.set(verseSplit.words,{
-    opacity:0,
-    y:35,
-    filter:"blur(8px)"
+gsap.set(verseSplit.words, {
+    opacity: 0,
+    y: 35,
+    filter: "blur(8px)"
 });
 
 /*=========================================================
@@ -662,31 +664,31 @@ gsap.set(verseSplit.words,{
 
 const verseTimeline = gsap.timeline({
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:verseSection,
+        trigger: verseSection,
 
-        start:"top 60%",
+        start: "top 60%",
 
-        once:true
+        once: true
 
     }
 
 });
 
-verseTimeline.to(verseSplit.words,{
+verseTimeline.to(verseSplit.words, {
 
-    opacity:1,
+    opacity: 1,
 
-    y:0,
+    y: 0,
 
-    filter:"blur(0px)",
+    filter: "blur(0px)",
 
-    stagger:.15,
+    stagger: .15,
 
-    duration:.7,
+    duration: .7,
 
-    ease:"power3.out"
+    ease: "power3.out"
 
 });
 
@@ -694,51 +696,51 @@ verseTimeline.to(verseSplit.words,{
     BRILHO DO VERSÍCULO
 =========================================================*/
 
-verseTimeline.to(verseLight,{
+verseTimeline.to(verseLight, {
 
-    opacity:1,
+    opacity: 1,
 
-    scale:1.15,
+    scale: 1.15,
 
-    duration:2,
+    duration: 2,
 
-    ease:"power2.out"
+    ease: "power2.out"
 
-},"<");
+}, "<");
 
 /*=========================================================
     BACKGROUND GLOW
 =========================================================*/
 
-verseTimeline.to(glow,{
+verseTimeline.to(glow, {
 
-    opacity:.35,
+    opacity: .35,
 
-    duration:2
+    duration: 2
 
-},"<");
+}, "<");
 
 /*=========================================================
     BODY
 =========================================================*/
 
-verseTimeline.to(document.body,{
+verseTimeline.to(document.body, {
 
-    backgroundColor:"#14110d",
+    backgroundColor: "#14110d",
 
-    duration:2
+    duration: 2
 
-},"<");
+}, "<");
 
 /*=========================================================
     PIANO
 =========================================================*/
 
-verseTimeline.call(()=>{
+verseTimeline.call(() => {
 
-    piano.currentTime=0;
+    piano.currentTime = 0;
 
-    piano.play().catch(()=>{});
+    piano.play().catch(() => { });
 
 });
 
@@ -746,9 +748,9 @@ verseTimeline.call(()=>{
     VIBRAÇÃO
 =========================================================*/
 
-verseTimeline.call(()=>{
+verseTimeline.call(() => {
 
-    if(navigator.vibrate){
+    if (navigator.vibrate) {
 
         navigator.vibrate([40]);
 
@@ -761,21 +763,21 @@ verseTimeline.call(()=>{
 =========================================================*/
 
 const lastWord =
-verseSplit.words[verseSplit.words.length-1];
+    verseSplit.words[verseSplit.words.length - 1];
 
-verseTimeline.to(lastWord,{
+verseTimeline.to(lastWord, {
 
-    color:"#D8B15A",
+    color: "#D8B15A",
 
-    scale:1.08,
+    scale: 1.08,
 
-    textShadow:"0 0 25px rgba(216,177,90,.7)",
+    textShadow: "0 0 25px rgba(216,177,90,.7)",
 
-    duration:.9,
+    duration: .9,
 
-    yoyo:true,
+    yoyo: true,
 
-    repeat:1
+    repeat: 1
 
 });
 
@@ -783,21 +785,21 @@ verseTimeline.to(lastWord,{
     SMALL
 =========================================================*/
 
-gsap.from("small",{
+gsap.from("small", {
 
-    opacity:0,
+    opacity: 0,
 
-    y:25,
+    y: 25,
 
-    duration:1,
+    duration: 1,
 
-    ease:"power3.out",
+    ease: "power3.out",
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:"small",
+        trigger: "small",
 
-        start:"top 80%"
+        start: "top 80%"
 
     }
 
@@ -807,21 +809,21 @@ gsap.from("small",{
     DESCRIÇÃO
 =========================================================*/
 
-gsap.from(".description",{
+gsap.from(".description", {
 
-    opacity:0,
+    opacity: 0,
 
-    y:45,
+    y: 45,
 
-    duration:1,
+    duration: 1,
 
-    ease:"power3.out",
+    ease: "power3.out",
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:".description",
+        trigger: ".description",
 
-        start:"top 75%"
+        start: "top 75%"
 
     }
 
@@ -831,23 +833,23 @@ gsap.from(".description",{
     CONVITE
 =========================================================*/
 
-gsap.from(".event p",{
+gsap.from(".event p", {
 
-    opacity:0,
+    opacity: 0,
 
-    x:-25,
+    x: -25,
 
-    stagger:.15,
+    stagger: .15,
 
-    duration:.7,
+    duration: .7,
 
-    ease:"power2.out",
+    ease: "power2.out",
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:".invite",
+        trigger: ".invite",
 
-        start:"top 70%"
+        start: "top 70%"
 
     }
 
@@ -857,21 +859,21 @@ gsap.from(".event p",{
     BOTÃO
 =========================================================*/
 
-gsap.from("button",{
+gsap.from("button", {
 
-    opacity:0,
+    opacity: 0,
 
-    scale:.85,
+    scale: .85,
 
-    duration:1,
+    duration: 1,
 
-    ease:"back.out(1.8)",
+    ease: "back.out(1.8)",
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:"button",
+        trigger: "button",
 
-        start:"top 80%"
+        start: "top 80%"
 
     }
 
@@ -881,17 +883,17 @@ gsap.from("button",{
     RESPIRAÇÃO DO VERSÍCULO
 =========================================================*/
 
-gsap.to(verse,{
+gsap.to(verse, {
 
-    scale:1.015,
+    scale: 1.015,
 
-    duration:4,
+    duration: 4,
 
-    repeat:-1,
+    repeat: -1,
 
-    yoyo:true,
+    yoyo: true,
 
-    ease:"sine.inOut"
+    ease: "sine.inOut"
 
 });
 
@@ -899,19 +901,19 @@ gsap.to(verse,{
     GLOW PULSANDO
 =========================================================*/
 
-gsap.to(verseLight,{
+gsap.to(verseLight, {
 
-    scale:1.25,
+    scale: 1.25,
 
-    opacity:.75,
+    opacity: .75,
 
-    repeat:-1,
+    repeat: -1,
 
-    yoyo:true,
+    yoyo: true,
 
-    ease:"sine.inOut",
+    ease: "sine.inOut",
 
-    duration:5
+    duration: 5
 
 });
 
@@ -919,21 +921,21 @@ gsap.to(verseLight,{
     PARALLAX DA LUZ
 =========================================================*/
 
-gsap.to(verseLight,{
+gsap.to(verseLight, {
 
-    y:-120,
+    y: -120,
 
-    ease:"none",
+    ease: "none",
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:verseSection,
+        trigger: verseSection,
 
-        start:"top bottom",
+        start: "top bottom",
 
-        end:"bottom top",
+        end: "bottom top",
 
-        scrub:true
+        scrub: true
 
     }
 
@@ -954,7 +956,7 @@ const ctx = canvas.getContext("2d");
 let width;
 let height;
 
-function resizeCanvas(){
+function resizeCanvas() {
 
     width = canvas.width = window.innerWidth * devicePixelRatio;
     height = canvas.height = window.innerHeight * devicePixelRatio;
@@ -962,37 +964,37 @@ function resizeCanvas(){
     canvas.style.width = window.innerWidth + "px";
     canvas.style.height = window.innerHeight + "px";
 
-    ctx.scale(devicePixelRatio,devicePixelRatio);
+    ctx.scale(devicePixelRatio, devicePixelRatio);
 
 }
 
 resizeCanvas();
 
-window.addEventListener("resize",resizeCanvas);
+window.addEventListener("resize", resizeCanvas);
 
 /*=========================================================
     PARTÍCULAS
 =========================================================*/
 
-const particles=[];
+const particles = [];
 
-const PARTICLE_COUNT=70;
+const PARTICLE_COUNT = 70;
 
-for(let i=0;i<PARTICLE_COUNT;i++){
+for (let i = 0; i < PARTICLE_COUNT; i++) {
 
     particles.push({
 
-        x:Math.random()*window.innerWidth,
+        x: Math.random() * window.innerWidth,
 
-        y:Math.random()*window.innerHeight,
+        y: Math.random() * window.innerHeight,
 
-        radius:Math.random()*1.8+0.3,
+        radius: Math.random() * 1.8 + 0.3,
 
-        speed:Math.random()*0.3+0.05,
+        speed: Math.random() * 0.3 + 0.05,
 
-        alpha:Math.random()*0.35+0.05,
+        alpha: Math.random() * 0.35 + 0.05,
 
-        angle:Math.random()*Math.PI*2
+        angle: Math.random() * Math.PI * 2
 
     });
 
@@ -1002,19 +1004,19 @@ for(let i=0;i<PARTICLE_COUNT;i++){
     MOUSE
 =========================================================*/
 
-const mouse={
+const mouse = {
 
-    x:window.innerWidth/2,
+    x: window.innerWidth / 2,
 
-    y:window.innerHeight/2
+    y: window.innerHeight / 2
 
 };
 
-window.addEventListener("mousemove",e=>{
+window.addEventListener("mousemove", e => {
 
-    mouse.x=e.clientX;
+    mouse.x = e.clientX;
 
-    mouse.y=e.clientY;
+    mouse.y = e.clientY;
 
 });
 
@@ -1022,49 +1024,49 @@ window.addEventListener("mousemove",e=>{
     TOUCH
 =========================================================*/
 
-window.addEventListener("touchmove",e=>{
+window.addEventListener("touchmove", e => {
 
-    if(!e.touches.length) return;
+    if (!e.touches.length) return;
 
-    mouse.x=e.touches[0].clientX;
+    mouse.x = e.touches[0].clientX;
 
-    mouse.y=e.touches[0].clientY;
+    mouse.y = e.touches[0].clientY;
 
-},{passive:true});
+}, { passive: true });
 
 /*=========================================================
     DRAW
 =========================================================*/
 
-function drawParticles(){
+function drawParticles() {
 
-    ctx.clearRect(0,0,width,height);
+    ctx.clearRect(0, 0, width, height);
 
-    particles.forEach(p=>{
+    particles.forEach(p => {
 
-        p.angle+=0.002;
+        p.angle += 0.002;
 
-        p.y-=p.speed;
+        p.y -= p.speed;
 
-        p.x+=Math.sin(p.angle)*0.15;
+        p.x += Math.sin(p.angle) * 0.15;
 
-        if(p.y<-10){
+        if (p.y < -10) {
 
-            p.y=window.innerHeight+10;
+            p.y = window.innerHeight + 10;
 
-            p.x=Math.random()*window.innerWidth;
+            p.x = Math.random() * window.innerWidth;
 
         }
 
-        const dx=mouse.x-p.x;
-        const dy=mouse.y-p.y;
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
 
-        const distance=Math.sqrt(dx*dx+dy*dy);
+        const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if(distance<120){
+        if (distance < 120) {
 
-            p.x-=dx*0.008;
-            p.y-=dy*0.008;
+            p.x -= dx * 0.008;
+            p.y -= dy * 0.008;
 
         }
 
@@ -1080,11 +1082,11 @@ function drawParticles(){
 
             0,
 
-            Math.PI*2
+            Math.PI * 2
 
         );
 
-        ctx.fillStyle=`rgba(216,177,90,${p.alpha})`;
+        ctx.fillStyle = `rgba(216,177,90,${p.alpha})`;
 
         ctx.fill();
 
@@ -1100,27 +1102,27 @@ drawParticles();
     HERO 3D
 =========================================================*/
 
-const heroContent=document.querySelector(".heroContent");
+const heroContent = document.querySelector(".heroContent");
 
-window.addEventListener("mousemove",e=>{
+window.addEventListener("mousemove", e => {
 
-    const rotateY=(e.clientX/window.innerWidth-.5)*6;
+    const rotateY = (e.clientX / window.innerWidth - .5) * 6;
 
-    const rotateX=(e.clientY/window.innerHeight-.5)*-6;
+    const rotateX = (e.clientY / window.innerHeight - .5) * -6;
 
-    gsap.to(heroContent,{
+    gsap.to(heroContent, {
 
         rotateY,
 
         rotateX,
 
-        transformPerspective:1000,
+        transformPerspective: 1000,
 
-        transformOrigin:"center",
+        transformOrigin: "center",
 
-        duration:1,
+        duration: 1,
 
-        ease:"power3.out"
+        ease: "power3.out"
 
     });
 
@@ -1130,13 +1132,13 @@ window.addEventListener("mousemove",e=>{
     GLOW
 =========================================================*/
 
-window.addEventListener("mousemove",e=>{
+window.addEventListener("mousemove", e => {
 
-    const x=e.clientX/window.innerWidth*100;
+    const x = e.clientX / window.innerWidth * 100;
 
-    const y=e.clientY/window.innerHeight*100;
+    const y = e.clientY / window.innerHeight * 100;
 
-    glow.style.background=`
+    glow.style.background = `
 
     radial-gradient(
 
@@ -1156,33 +1158,33 @@ window.addEventListener("mousemove",e=>{
     BOTÃO
 =========================================================*/
 
-const button=document.querySelector("button");
+const button = document.querySelector("button");
 
-if(button){
+if (button) {
 
-button.addEventListener("mouseenter",()=>{
+    button.addEventListener("mouseenter", () => {
 
-    gsap.to(button,{
+        gsap.to(button, {
 
-        scale:1.03,
+            scale: 1.03,
 
-        duration:.35
+            duration: .35
 
-    });
-
-});
-
-button.addEventListener("mouseleave",()=>{
-
-    gsap.to(button,{
-
-        scale:1,
-
-        duration:.35
+        });
 
     });
 
-});
+    button.addEventListener("mouseleave", () => {
+
+        gsap.to(button, {
+
+            scale: 1,
+
+            duration: .35
+
+        });
+
+    });
 
 }
 
@@ -1190,17 +1192,17 @@ button.addEventListener("mouseleave",()=>{
     REFERÊNCIA
 =========================================================*/
 
-gsap.to(".reference",{
+gsap.to(".reference", {
 
     textShadow:
 
-    "0 0 12px rgba(216,177,90,.6), 0 0 35px rgba(216,177,90,.25)",
+        "0 0 12px rgba(216,177,90,.6), 0 0 35px rgba(216,177,90,.25)",
 
-    repeat:-1,
+    repeat: -1,
 
-    yoyo:true,
+    yoyo: true,
 
-    duration:2
+    duration: 2
 
 });
 
@@ -1208,17 +1210,17 @@ gsap.to(".reference",{
     HERO FLOAT
 =========================================================*/
 
-gsap.to(".heroContent",{
+gsap.to(".heroContent", {
 
-    y:-10,
+    y: -10,
 
-    repeat:-1,
+    repeat: -1,
 
-    yoyo:true,
+    yoyo: true,
 
-    duration:5,
+    duration: 5,
 
-    ease:"sine.inOut"
+    ease: "sine.inOut"
 
 });
 
@@ -1226,27 +1228,27 @@ gsap.to(".heroContent",{
     EVENTOS
 =========================================================*/
 
-document.querySelectorAll(".event p").forEach(item=>{
+document.querySelectorAll(".event p").forEach(item => {
 
-    item.addEventListener("mouseenter",()=>{
+    item.addEventListener("mouseenter", () => {
 
-        gsap.to(item,{
+        gsap.to(item, {
 
-            x:6,
+            x: 6,
 
-            duration:.3
+            duration: .3
 
         });
 
     });
 
-    item.addEventListener("mouseleave",()=>{
+    item.addEventListener("mouseleave", () => {
 
-        gsap.to(item,{
+        gsap.to(item, {
 
-            x:0,
+            x: 0,
 
-            duration:.3
+            duration: .3
 
         });
 
@@ -1269,15 +1271,15 @@ ScrollTrigger.refresh();
     PRELOADER
 =========================================================*/
 
-window.addEventListener("load",()=>{
+window.addEventListener("load", () => {
 
-    gsap.from("body",{
+    gsap.from("body", {
 
-        opacity:0,
+        opacity: 0,
 
-        duration:1,
+        duration: 1,
 
-        ease:"power2.out"
+        ease: "power2.out"
 
     });
 
@@ -1287,19 +1289,19 @@ window.addEventListener("load",()=>{
     BRILHO SUAVE NOS TÍTULOS
 =========================================================*/
 
-gsap.utils.toArray(".big").forEach(title=>{
+gsap.utils.toArray(".big").forEach(title => {
 
-    gsap.to(title,{
+    gsap.to(title, {
 
-        textShadow:"0 0 18px rgba(216,177,90,.15)",
+        textShadow: "0 0 18px rgba(216,177,90,.15)",
 
-        repeat:-1,
+        repeat: -1,
 
-        yoyo:true,
+        yoyo: true,
 
-        duration:4,
+        duration: 4,
 
-        ease:"sine.inOut"
+        ease: "sine.inOut"
 
     });
 
@@ -1309,21 +1311,21 @@ gsap.utils.toArray(".big").forEach(title=>{
     PARALLAX DO GLOW
 =========================================================*/
 
-gsap.to(".backgroundGlow",{
+gsap.to(".backgroundGlow", {
 
-    yPercent:-15,
+    yPercent: -15,
 
-    ease:"none",
+    ease: "none",
 
-    scrollTrigger:{
+    scrollTrigger: {
 
-        trigger:"body",
+        trigger: "body",
 
-        start:"top top",
+        start: "top top",
 
-        end:"bottom bottom",
+        end: "bottom bottom",
 
-        scrub:true
+        scrub: true
 
     }
 
@@ -1333,15 +1335,15 @@ gsap.to(".backgroundGlow",{
     NOISE
 =========================================================*/
 
-gsap.to(".noise",{
+gsap.to(".noise", {
 
-    backgroundPosition:"400px 300px",
+    backgroundPosition: "400px 300px",
 
-    duration:25,
+    duration: 25,
 
-    repeat:-1,
+    repeat: -1,
 
-    ease:"none"
+    ease: "none"
 
 });
 
@@ -1349,17 +1351,17 @@ gsap.to(".noise",{
     HERO LIGHT
 =========================================================*/
 
-gsap.to(".hero::before",{
+gsap.to(".hero::before", {
 
-    opacity:.55,
+    opacity: .55,
 
-    repeat:-1,
+    repeat: -1,
 
-    yoyo:true,
+    yoyo: true,
 
-    duration:5,
+    duration: 5,
 
-    ease:"sine.inOut"
+    ease: "sine.inOut"
 
 });
 
@@ -1367,27 +1369,27 @@ gsap.to(".hero::before",{
     BOTÃO
 =========================================================*/
 
-button.addEventListener("click",()=>{
+button.addEventListener("click", () => {
 
     gsap.timeline()
 
-    .to(button,{
+        .to(button, {
 
-        scale:.95,
+            scale: .95,
 
-        duration:.08
+            duration: .08
 
-    })
+        })
 
-    .to(button,{
+        .to(button, {
 
-        scale:1,
+            scale: 1,
 
-        duration:.25,
+            duration: .25,
 
-        ease:"back.out(3)"
+            ease: "back.out(3)"
 
-    });
+        });
 
 });
 
@@ -1397,17 +1399,17 @@ button.addEventListener("click",()=>{
 
 ScrollTrigger.create({
 
-    trigger:".invite",
+    trigger: ".invite",
 
-    start:"top center",
+    start: "top center",
 
-    onEnter:()=>{
+    onEnter: () => {
 
-        gsap.to(music,{
+        gsap.to(music, {
 
-            volume:.03,
+            volume: .03,
 
-            duration:4
+            duration: 4
 
         });
 
@@ -1419,9 +1421,9 @@ ScrollTrigger.create({
     SCROLL PROGRESS
 =========================================================*/
 
-const progress=document.createElement("div");
+const progress = document.createElement("div");
 
-progress.style.cssText=`
+progress.style.cssText = `
 
 position:fixed;
 left:0;
@@ -1438,17 +1440,17 @@ document.body.appendChild(progress);
 
 ScrollTrigger.create({
 
-    trigger:"body",
+    trigger: "body",
 
-    start:"top top",
+    start: "top top",
 
-    end:"bottom bottom",
+    end: "bottom bottom",
 
-    scrub:true,
+    scrub: true,
 
-    onUpdate:self=>{
+    onUpdate: self => {
 
-        progress.style.width=(self.progress*100)+"%";
+        progress.style.width = (self.progress * 100) + "%";
 
     }
 
@@ -1458,39 +1460,39 @@ ScrollTrigger.create({
     EFEITO 3D NAS SEÇÕES
 =========================================================*/
 
-panels.forEach(panel=>{
+panels.forEach(panel => {
 
-    panel.addEventListener("mousemove",(e)=>{
+    panel.addEventListener("mousemove", (e) => {
 
-        const rect=panel.getBoundingClientRect();
+        const rect = panel.getBoundingClientRect();
 
-        const x=(e.clientX-rect.left)/rect.width-.5;
+        const x = (e.clientX - rect.left) / rect.width - .5;
 
-        const y=(e.clientY-rect.top)/rect.height-.5;
+        const y = (e.clientY - rect.top) / rect.height - .5;
 
-        gsap.to(panel,{
+        gsap.to(panel, {
 
-            rotateY:x*2,
+            rotateY: x * 2,
 
-            rotateX:-y*2,
+            rotateX: -y * 2,
 
-            duration:.7,
+            duration: .7,
 
-            ease:"power2.out"
+            ease: "power2.out"
 
         });
 
     });
 
-    panel.addEventListener("mouseleave",()=>{
+    panel.addEventListener("mouseleave", () => {
 
-        gsap.to(panel,{
+        gsap.to(panel, {
 
-            rotateX:0,
+            rotateX: 0,
 
-            rotateY:0,
+            rotateY: 0,
 
-            duration:1
+            duration: 1
 
         });
 
@@ -1502,25 +1504,25 @@ panels.forEach(panel=>{
     EASTER EGG
 =========================================================*/
 
-let clicks=0;
+let clicks = 0;
 
-document.querySelector(".reference").addEventListener("click",()=>{
+document.querySelector(".reference").addEventListener("click", () => {
 
     clicks++;
 
-    if(clicks!==8) return;
+    if (clicks !== 8) return;
 
-    gsap.to(".reference",{
+    gsap.to(".reference", {
 
-        scale:1.5,
+        scale: 1.5,
 
-        color:"#ffffff",
+        color: "#ffffff",
 
-        duration:.5,
+        duration: .5,
 
-        yoyo:true,
+        yoyo: true,
 
-        repeat:1
+        repeat: 1
 
     });
 
@@ -1530,13 +1532,13 @@ document.querySelector(".reference").addEventListener("click",()=>{
     PERFORMANCE
 =========================================================*/
 
-window.addEventListener("blur",()=>{
+window.addEventListener("blur", () => {
 
     gsap.globalTimeline.pause();
 
 });
 
-window.addEventListener("focus",()=>{
+window.addEventListener("focus", () => {
 
     gsap.globalTimeline.resume();
 
@@ -1546,8 +1548,8 @@ window.addEventListener("focus",()=>{
     REFRESH
 =========================================================*/
 
-setTimeout(()=>{
+setTimeout(() => {
 
     ScrollTrigger.refresh();
 
-},500);
+}, 500);
