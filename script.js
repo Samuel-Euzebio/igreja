@@ -189,59 +189,36 @@ gsap.set(".reference",{
     HERO INTRO
 =========================================================*/
 
-const intro = gsap.timeline({
-
-    delay:.4
-
-});
+const intro = gsap.timeline();
 
 intro
 
-.to(".reference",{
-
-    opacity:1,
-
-    y:0,
-
-    duration:.8
-
+.to(".reference", {
+    opacity: 1,
+    y: 0,
+    duration: 0.25
 })
 
-.to(".char",{
+.to(".char", {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    stagger: 0.006,
+    ease: "power2.out",
+    duration: 0.35
+}, "<")
 
-    opacity:1,
+.to(".indicator", {
+    opacity: 1,
+    y: 0,
+    duration: 0.3
+}, "<")
 
-    y:0,
-
-    rotateX:0,
-
-    stagger:.02,
-
-    ease:"power4.out",
-
-    duration:1
-
-},"-=.3")
-
-.to(".indicator",{
-
-    opacity:1,
-
-    y:0,
-
-    duration:.8
-
-},"-=.5")
-
-.to(".hint",{
-
-    opacity:1,
-
-    y:0,
-
-    duration:.8
-
-},"-=.6");
+.to(".hint", {
+    opacity: 1,
+    y: 0,
+    duration: 0.3
+}, "<");
 
 /*=========================================================
     HERO PARALLAX
